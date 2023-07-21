@@ -1,11 +1,36 @@
 import RootLayout from '@/components/Layouts/RootLayout';
+import { Card, Col, Image, Row } from 'antd';
 import React from 'react';
 
 const NewsDetailPage = ({news}) => {
+
     return (
         <div>
-           <h1>{news?.title}</h1> 
-           <h4>{news?.id}</h4> 
+     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Col className="gutter-row" span={12}>
+        <div>
+            <Image
+            src={news?.image_url}
+            width={500}
+            height={330}
+            alt='news'
+            onError={(e) => {
+                // Handle error, e.g., show a placeholder image
+                console.error('Error loading image:', e);
+              }}
+            />
+        </div>
+      </Col>
+      <Col className="gutter-row" span={12}>
+        <div>
+        <Card>
+            <h4>title={news.title}</h4> 
+            <h6>{news.description}</h6>
+            </Card>
+        </div>
+      </Col>
+      
+    </Row>
         </div>
     );
 };
