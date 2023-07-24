@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 
 const HomePage = ({allNews}) => {
  const {data, isLoading, isError, error} = useGetNewsesQuery()
- //console.log(data)
+ //console.log('all news',allNews)
 
  const DynamicBanner = dynamic(() => import('@/components/UI/Banner'),{
   loading: () => <h1>Loading...</h1>,
@@ -27,7 +27,7 @@ const HomePage = ({allNews}) => {
       </Head>
       {/* <Banner /> */}
       <DynamicBanner />
-      <AllNews allNews={data} />
+       <AllNews allNews={allNews} /> 
     </>
   );
 };
@@ -38,13 +38,14 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 export const getServerSideProps = async()=>{
-  const res = await fetch('http://localhost:5000/news')
+  /* const res = await fetch('http://localhost:5000/news') */
+  const res = await fetch('http://localhost:3000/api/news')
   const data = await res.json()
-  //console.log('hello data',data)
+  //console.log('hello data',data.data)
 
   return{
     props: {
-     allNews: data
+     allNews: data.data
     },
   }
 }
