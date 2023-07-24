@@ -17,7 +17,7 @@ const AllNews = ({allNews}) => {
         
         <Row justify='space-between' gutter={16}>
         {
-         allNews.map((news, index)=>(
+         allNews?.map((news, index)=>(
             <Col    key={index} span={6}>
              <Card
              hoverable
